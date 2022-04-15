@@ -4,7 +4,11 @@ plugins {
 	id 'java'
 }
 
+<<<<<<< HEAD
 group = 'site.metacoding'
+=======
+group = 'spring.project'
+>>>>>>> 10940260955559166825c384c8d4c4435faab2b9
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -32,4 +36,8 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 10940260955559166825c384c8d4c4435faab2b9
