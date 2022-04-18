@@ -29,9 +29,9 @@ public class PlaceService {
         }
     }
 
-    public Places 분류검색(String partName) {
-        Places placesOp = placeRepository.searchPartName(partName);
-        return placesOp;
+    public List<Places> 분류검색(String partName) {
+        List<Places> pList = placeRepository.searchPartName(partName);
+        return pList;
     }
 
     public boolean 옵션표시(String yesOrNO) {

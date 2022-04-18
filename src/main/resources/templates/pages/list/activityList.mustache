@@ -1,4 +1,4 @@
-{{> /layout/header}}
+{{> layout/header}}
 
 <body>
     <div class="container">
@@ -8,7 +8,7 @@
             <!-- 메뉴 박스 아우터 시작-->
             <div class="m_outer_menu_detail" style="margin-bottom: 80px; margin-top: 30px;">
                 <!-- 메뉴 박스 시작 -->
-                {{> /layout/manuBox}}
+
                 <!-- 메뉴 박스  끝-->
             </div>
         </div>
@@ -41,143 +41,23 @@
         <br>
         <div class="container">
             <div class="row">
+                {{#places}}
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
                         <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
+                            <img class="m_box_image" src="{{pdto.imgurl}}">
                         </a>
                         <div class="caption">
                             <div class="m_font_lg m_font_bold">{{title}}</div>
-                            <div class=""> <i class="fa-solid fa-location-dot"></i> {{address}}</div>
-                        </div>
+                            <div class=""> 
+                                <i class="fa-solid fa-location-dot"></i> {{address}}
+                            </div>
+                        </div>                 
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="#">
-                            <img class="m_box_image" src="images/cat.jpg">
-                        </a>
-                        <div class="caption">
-                            <div class="m_font_lg m_font_bold">이름</div>
-                            <div class=""><i class="fa-solid fa-location-dot"></i> 주소</div>
-                        </div>
-                    </div>
-                </div>
+                     {{/places}}
             </div>
         </div>
     </div>
 </body>
-{{> /layout/footer}}
+{{> layout/footer}}

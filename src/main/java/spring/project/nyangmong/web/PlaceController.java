@@ -22,6 +22,7 @@ import spring.project.nyangmong.util.ContentSeqDownload;
 import spring.project.nyangmong.web.dto.craw.PlaceDto;
 import spring.project.nyangmong.web.dto.craw.Result;
 import spring.project.nyangmong.web.dto.places.ImageListDto;
+import spring.project.nyangmong.web.dto.places.PlaceListDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -40,13 +41,6 @@ public class PlaceController {
 
         ImageListDto dto = new ImageListDto();
         dto.setPublicDataImage(imageList);
-        dto.setBathFlagShow(placeService.옵션표시(places.getBathFlag()));
-        dto.setParkingFlagShow(placeService.옵션표시(places.getParkingFlag()));
-        dto.setEntranceFlagShow(placeService.옵션표시(places.getEntranceFlag()));
-        dto.setEmergencyFlagShow(placeService.옵션표시(places.getEmergencyFlag()));
-        dto.setProvisionFlagShow(placeService.옵션표시(places.getProvisionFlag()));
-        dto.setInOutFlagShow(placeService.옵션표시(places.getInOutFlag()));
-        dto.setPetFlagShow(placeService.옵션표시(places.getPetFlag()));
 
         // List<PlaceDto> placesDto = new ArrayList<>();
 
@@ -60,21 +54,30 @@ public class PlaceController {
     // 받아온 결과가 한개가 아니라 여러개라서 에러가 터지는 상태.
     @GetMapping("/place/search")
     public String searchPartName(@RequestParam String partName, Model model) {
-        Places places = placeService.분류검색(partName);
+        List<Places> places = placeService.분류검색(partName);
         // long count = placeRepository.countPartName(partName);
         // model.addAttribute("count", count);
-        model.addAttribute("places", places);
+        PlaceListDto placeDto = new PlaceListDto();
+        ImageListDto imageDto = new ImageListDto();
+        placeDto.setPlaces(places);
+        for (int i = 0; i < places.size(); i++) {
+            placeDto.setTitle(places.get(i).getTitle());
+            placeDto.setAddress(places.get(i).getAddress());
+            placeDto.setImgurl(places.get(i).getImageList().get(0).getImgurl());
+        }
 
+        model.addAttribute("pdto", placeDto);
+        model.addAttribute("places", places);
         if (partName.equals("관광지")) {
-            return "pages/detail/spotList";
+            return "pages/list/spotList";
         } else if (partName.equals("동물병원")) {
-            return "pages/detail/hospitalList";
+            return "pages/list/hospitalList";
         } else if (partName.equals("식음료")) {
-            return "pages/detail/cafeList";
+            return "pages/list/cafeList";
         } else if (partName.equals("체험")) {
-            return "pages/detail/activityList";
+            return "pages/list/activityList";
         } else if (partName.equals("숙박")) {
-            return "pages/detail/hotelList";
+            return "pages/list/hotelList";
         } else {
             throw new RuntimeException("해당 관광정보를 찾을 수 없습니다");
         }

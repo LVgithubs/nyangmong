@@ -1,5 +1,7 @@
 package spring.project.nyangmong.domain.places;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,7 +13,7 @@ public interface PlaceRepository extends JpaRepository<Places, Integer> {
     Places placesDetail(@Param("contentSeq") int contentSeq);
 
     @Query(value = "SELECT * FROM places WHERE partName = :partName", nativeQuery = true)
-    Places searchPartName(@Param("partName") String partName);
+    List<Places> searchPartName(@Param("partName") String partName);
 
     @Query(value = "SELECT count() FROM places WHERE partName = :partName", nativeQuery = true)
     long countPartName(@Param("partName") String partName);
