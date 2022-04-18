@@ -10,7 +10,9 @@ html, body {
   0% { overflow: hidden; } 
   100% { overflow: auto; }
 }
-
+.maxheight{
+  height: max-content;
+}
 .container {
   width: 80%;
   height: 80%;

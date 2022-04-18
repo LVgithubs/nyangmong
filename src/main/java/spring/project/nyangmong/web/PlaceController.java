@@ -49,21 +49,23 @@ public class PlaceController {
         return "pages/detail/placeDetail";
     }
 
-    // 검색- 쿼리스트링 이용가능
-    // 단, 직접적으로 검색을 하려 할 시 , 한글이 깨지는 현상 발생중
-    // 받아온 결과가 한개가 아니라 여러개라서 에러가 터지는 상태.
+    @GetMapping("/outline")
+    public String outline(Model model) {
+        List<Places> places = placeRepository.findAll();
+        model.addAttribute("places", places);
+        return "pages/list/outlineList";
+    }
+
     @GetMapping("/place/search")
     public String searchPartName(@RequestParam String partName, Model model) {
         List<Places> places = placeService.분류검색(partName);
         // long count = placeRepository.countPartName(partName);
         // model.addAttribute("count", count);
         PlaceListDto placeDto = new PlaceListDto();
-        ImageListDto imageDto = new ImageListDto();
         placeDto.setPlaces(places);
         for (int i = 0; i < places.size(); i++) {
             placeDto.setTitle(places.get(i).getTitle());
             placeDto.setAddress(places.get(i).getAddress());
-            placeDto.setImgurl(places.get(i).getImageList().get(0).getImgurl());
         }
 
         model.addAttribute("pdto", placeDto);
@@ -81,6 +83,24 @@ public class PlaceController {
         } else {
             throw new RuntimeException("해당 관광정보를 찾을 수 없습니다");
         }
+    }
+
+    @GetMapping("/outline/search")
+    public String searchOutLine(@RequestParam String keyword, Model model) {
+        if (keyword == null) {
+            return "pages/list/outlineList";
+        }
+        List<Places> places = placeRepository.searchPlaces(keyword, keyword);
+        PlaceListDto placeDto = new PlaceListDto();
+        placeDto.setPlaces(places);
+        for (int i = 0; i < places.size(); i++) {
+            placeDto.setTitle(places.get(i).getTitle());
+            placeDto.setAddress(places.get(i).getAddress());
+        }
+
+        model.addAttribute("pdto", placeDto);
+        model.addAttribute("places", places);
+        return "pages/list/outlineList";
     }
 
     // 데이터베이스 받아오는 url 들어갈때 시간이 많이 걸립니다.

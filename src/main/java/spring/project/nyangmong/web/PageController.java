@@ -16,8 +16,4 @@ public class PageController {
         return "pages/welcomePage";
     }
 
-    @GetMapping("/outline")
-    public String outline() {
-        return "pages/list/outlineList";
-    }
 }

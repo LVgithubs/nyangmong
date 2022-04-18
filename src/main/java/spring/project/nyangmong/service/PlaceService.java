@@ -34,6 +34,11 @@ public class PlaceService {
         return pList;
     }
 
+    public List<Places> 전체보기() {
+        List<Places> plist = placeRepository.findAll();
+        return plist;
+    }
+
     public boolean 옵션표시(String yesOrNO) {
         if (yesOrNO.equals("Y")) {
             return true;

@@ -6,9 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
 import spring.project.nyangmong.service.UserService;
+import spring.project.nyangmong.web.dto.members.user.JoinDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -21,6 +23,13 @@ public class UserController {
     // session.invalidate(); // 세션 무효화 (세션 아이디 영역의 데이터를 다 삭제해)
     // return "redirect:/";
     // }
+
+    // 회원가입
+    @PostMapping("/join")
+    public String join(JoinDto joinDto) {
+        userService.회원가입(joinDto);
+        return "redirect:/loginForm";
+    }
 
     @GetMapping("/joinForm")
     public String joinForm() {
@@ -42,28 +51,28 @@ public class UserController {
     @GetMapping("/user/favlist")
     public String likeList() {
 
-        return "pages/list/favoriteList";
+        return "pages/user/favoriteList";
     }
 
     // 유저가 마음에 들어한 댕냥이자랑 게시판 - 일단은 mapping만 해둔 상태.
     @GetMapping("/user/boardlike")
     public String boardLikeList() {
 
-        return "pages/list/likeList";
+        return "pages/user/likeList";
     }
 
     // 유저가 적은 댓글 보기 - 일단은 mapping만 해둔 상태
     @GetMapping("/user/commentlist")
     public String commentList() {
 
-        return "pages/list/commentlist";
+        return "pages/user/commentlist";
     }
 
-    // 유저가 상세보기 - 일단은 mapping만 해둔 상태
+    // 유저 상세보기 - 일단은 mapping만 해둔 상태
     @GetMapping("/user/detail")
     public String userDetail() {
 
-        return "pages/detail/userDetail";
+        return "pages/user/userDetail";
     }
 
     // 아이디 찾기- 일단은 mapping만 해둔 상태

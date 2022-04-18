@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -36,10 +35,6 @@ public class Pet {
     // 반려동물 종류
     @Column(length = 60)
     private String petSpices;
-
-    // 반려동물 이미지 url
-    @Column(length = 300)
-    private String petImgurl;
 
     // 반려동물 나이
     @Column(length = 300)
