@@ -177,6 +177,7 @@
         loadPoints();
 
         //좋아요 탭
+
         $("#mytabs>ul>li>a").each(function(i) {
             $(this).attr("href", "#mytab" + i)
         })
