@@ -19,7 +19,7 @@
                     maxlength="20" required />
                 <input id="email" class="my_auth_form_box_input" type="email" name="email" placeholder="Enter EMAIL"
                     value="{{user.email}}" maxlength="60" required />
-                <button id="btn_update" type="button" style="background-color: #E1E2E1; float: right; margin-top: 20px;"
+                <button id="btn-update" type="button" style="background-color: #E1E2E1; float: right; margin-top: 20px;"
                     class="btn">완료</button>
             </form>
 
@@ -32,37 +32,36 @@
     <div class="my_auth_box">
         <div class="my_auth_form_box" style="display: flex;">
 
-            <div class="m_auth_imgbox_pet">
-
-                <!-- 커버이미지 들어오는 부분-->
-                <div class="selectCover" style="padding-left: 0;">
-                    <img id="cover" style="width: 180px; height: 180px; border-radius: 90px;" />
-                </div>
-                <!-- 파일등록 -->
-                <div class="form-group" style="margin: 8px 0 8px; ">
-                    <input id="fileName" class="form-control " value="파일 선택" disabled="disabled"
-                        style="width:60%; display: inline;">
-                    <div class="fileRegiBtn">
-                        <label for="myFileUp">사진 업로드</label>
-                        <input type="file" id="myFileUp">
-                    </div>
-                </div>
-
-            </div>
-
             <div class="m_auth_inputbox_pet">
-                <form>
-                    <input class="my_auth_form_box_input" type="text" name="petname" placeholder="반려동물의 이름을 입력하세요"
-                        maxlength="20" required />
-                    <input class="my_auth_form_box_input" type="text" name="petsex" placeholder="반려동물의 성별을 입력하세요"
-                        maxlength="20" required />
-                    <input class="my_auth_form_box_input" type="email" name="age" placeholder="반려동물의 나이를 입력하세요"
-                        maxlength="12" required />
-                    <input class="my_auth_form_box_input" type="text" name="species" placeholder="반려동물의 종을 입력하세요"
-                        maxlength="100" required />
+                <form action="/s/user/{{user.id}}/pet/update" method="post" enctype="multipart/form-data">
+
+                    <div class="m_auth_imgbox_pet">
+                        <!-- 커버이미지 들어오는 부분-->
+                        <div class="selectCover" style="padding-left: 0;">
+                            <img id="cover" style="width: 180px; height: 180px; border-radius: 90px;" />
+                        </div>
+                        <!-- 파일등록 -->
+                        <div class="form-group" style="margin: 8px 0 8px; ">
+                            <input id="fileName" class="form-control " value="파일 선택" disabled="disabled"
+                                style="width:60%; display: inline;">
+                            <div class="fileRegiBtn">
+                                <label for="myFileUp">사진 업로드</label>
+                                <input type="file" id="myFileUp" name="file">
+                            </div>
+                        </div>
+                    </div>
+
+                    <input class="my_auth_form_box_input" type="text" name="petName" placeholder="반려동물의 이름을 입력하세요"
+                        value="" maxlength="20" required />
+                    <input class="my_auth_form_box_input" type="text" name="petGender" placeholder="반려동물의 성별을 입력하세요"
+                        value="" maxlength="20" required />
+                    <input class="my_auth_form_box_input" type="text" name="petAge" placeholder="반려동물의 나이를 입력하세요"
+                        value="" maxlength="12" required />
+                    <input class="my_auth_form_box_input" type="text" name="petSpices" placeholder="반려동물의 종을 입력하세요"
+                        value="" maxlength="100" required />
+                    <button type="submit" style="background-color: #E1E2E1; float: right; margin-top: 20px;"
+                        class="btn">수정</button>
                 </form>
-                <button id="btn-update" type="button" style="background-color: #E1E2E1; float: right; margin-top: 20px;"
-                    class="btn">수정</button>
             </div>
 
         </div>
