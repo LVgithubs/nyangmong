@@ -44,8 +44,8 @@
 
         //지도 옵션
         var mapOptions = {
-            center: new naver.maps.LatLng(37.8810600584646, 127.745003799391),
-            zoom: 10,
+            center: new naver.maps.LatLng(38.1306367046835, 127.982807156954),
+            zoom: 15,
             // 커스텀 컨트롤러 생성
 
 
@@ -68,31 +68,31 @@
                 <input name="keyword" class="form-control m_ph_sm " type="text" placeholder="주소 또는 명칭으로 검색하실 수 있습니다">
             </form>
             <div class="d-flex m_box_search_category">
-                <a href="/spotList">
+            <a href="javascript:linkListGo('관광지')">
                     <div>
                         <i class="fa-solid fa-flag"></i>
                     </div>
                     <div>관광</div>
                 </a>
-                <a href="/hotelList">
+                <a href="javascript:linkListGo('숙박')">
                     <div>
                         <i class="fa-solid fa-bed"></i>
                     </div>
                     <div>숙박</div>
                 </a>
-                <a href="/cafeList">
+                <a href="javascript:linkListGo('식음료')">
                     <div>
                         <i class="fa-solid fa-mug-hot"></i>
                     </div>
                     <div>식음료</div>
                 </a>
-                <a href="/activityList">
+                <a href="javascript:linkListGo('체험')">
                     <div>
                         <i class="fa-solid fa-volleyball"></i>
                     </div>
                     <div>체험</div>
                 </a>
-                <a href="/hospitalList">
+                <a href="javascript:linkListGo('동물병원')">
                     <div>
                         <i class="fa-solid fa-house-chimney-medical"></i>
                     </div>
@@ -104,23 +104,23 @@
             <div class="m_pl_sm hr-sect m_txt_lg m_txt_title">주변 탐색</div>
             <div class="m_pl_md" >
                 <div class="form-check m_pb_sm">
-                    <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked>
+                    <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" onclick=totalSearch('관광지') checked>
                     <label class="form-check-label m_font_lg">관광지</label>
                 </div>
                 <div class="form-check m_pb_sm">
-                    <input class="form-check-input" type="checkbox" id="check1" name="option2" value="something" checked>
+                    <input class="form-check-input" type="checkbox" id="check2" name="option2" value="something" onclick=totalSearch('숙박') checked>
                     <label class="form-check-label m_font_lg">숙박</label>
                 </div>
                 <div class="form-check m_pb_sm">
-                    <input class="form-check-input" type="checkbox" id="check1" name="option3" value="something" checked>
+                    <input class="form-check-input" type="checkbox" id="check3" name="option3" value="something" onclick=totalSearch('식음료') checked>
                     <label class="form-check-label m_font_lg">식음료</label>
                 </div>
                 <div class="form-check m_pb_sm">
-                    <input class="form-check-input" type="checkbox" id="check1" name="option4" value="something" checked>
+                    <input class="form-check-input" type="checkbox" id="check4" name="option4" value="something" onclick=totalSearch('체험') checked>
                     <label class="form-check-label m_font_lg">체험</label>
                 </div>
                 <div class="form-check m_pb_sm">
-                    <input class="form-check-input" type="checkbox" id="check1" name="option5" value="something" checked>
+                    <input class="form-check-input" type="checkbox" id="check5" name="option5" value="something" onclick=totalSearch('동물병원') checked>
                     <label class="form-check-label m_font_lg">동물병원</label>
                 </div>
             </div>
@@ -141,7 +141,8 @@
 
          // 좌표 요청 함수
              let loadPoints = async() =>{ 
-             let response = await fetch("/api/place/points"); // 패치 요청으로 좌표를 배열로 받아온다
+
+             let response = await fetch(`/api/place/points`); // 패치 요청으로 좌표를 배열로 받아온다
      
              let responseParse = await response.json();
      
@@ -150,12 +151,12 @@
             //  console.log(points);
      
              makeMarker(points); // 좌표를 만드는 함수로 전달
-     
+             
          };      
 
          // 좌표를 만드는 함수
         let makeMarker = (points) => { 
-            console.log(points);
+            // console.log(points);
             // 좌표값으로 마커 생성
             for (point of points) {
                 var markerOptions = {
@@ -198,3 +199,15 @@
             $("#" + tab_id).addClass('current');
         })
         }) 
+
+        let status ={
+            hotel: true,
+            cafe: true,
+            spot: true,
+            activity: true,
+            hospital: true
+        }
+
+        let totalSearch = (keyword)=>{
+            
+        };

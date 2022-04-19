@@ -147,7 +147,7 @@ public class PlaceController {
             model.addAttribute("places", places);
             return "pages/list/outlineList";
         }
-        List<Places> places = placeRepository.searchPlaces(keyword, keyword);
+        List<Places> places = placeRepository.searchPlaces(keyword);
         PlaceListDto placeDto = new PlaceListDto();
         placeDto.setPlaces(places);
         for (int i = 0; i < places.size(); i++) {
