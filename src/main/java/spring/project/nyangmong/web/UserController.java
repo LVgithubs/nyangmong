@@ -28,6 +28,14 @@ public class UserController {
     private final UserService userService;
     private final HttpSession session;
 
+    // 회원 정보 수정 페이지
+    @GetMapping("/s/user/{id}/update-form")
+    public String userChangeForm(@PathVariable Integer id, Model model) {
+        User userEntity = userService.회원정보보기(id);
+        model.addAttribute("user", userEntity);
+        return "pages/user/userChange";
+    }
+
     // 회원 정보 페이지
     @GetMapping("/s/user/{id}/detail")
     public String userDetail(@PathVariable Integer id, Model model) {
