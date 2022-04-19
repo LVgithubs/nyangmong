@@ -9,9 +9,9 @@ import lombok.RequiredArgsConstructor;
 import spring.project.nyangmong.domain.user.User;
 import spring.project.nyangmong.domain.user.UserRepository;
 import spring.project.nyangmong.handle.ex.CustomException;
+import spring.project.nyangmong.web.dto.members.user.IdFindReqDto;
 import spring.project.nyangmong.web.dto.members.user.JoinDto;
-import spring.project.nyangmong.web.dto.user.IdFindReqDto;
-import spring.project.nyangmong.web.dto.user.PwFindReqDto;
+import spring.project.nyangmong.web.dto.members.user.PwFindReqDto;
 
 @RequiredArgsConstructor
 @Service // 컴포넌트 스캔시에 IoC 컨테이너에 등록됨 // 트랜잭션 관리하는 오브젝트임. 기능 모임
@@ -51,7 +51,7 @@ public class UserService {
     }
 
     // 회원정보 데이터 가져오기
-    public User 회원정보(Integer id) {
+    public User 회원정보보기(Integer id) {
         Optional<User> userOp = userRepository.findById(id);
 
         if (userOp.isPresent()) {
