@@ -9,6 +9,7 @@
             <div class="my_error_box my_hidden">
             </div>
             <form>
+
                 <input id="user-id" class="my_auth_form_box_input" type="text" name="userId" placeholder="Enter ID"
                     value="{{user.userId}}" maxlength="20" readonly />
                 <input id="username" class="my_auth_form_box_input" type="text" name="userName"
@@ -21,6 +22,7 @@
                     value="{{user.email}}" maxlength="60" required />
                 <button id="btn-update" type="button" style="background-color: #E1E2E1; float: right; margin-top: 20px;"
                     class="btn">완료</button>
+
             </form>
 
         </div>
@@ -30,7 +32,8 @@
     <h1 class="text-center m_txt_title">반려동물 정보 </h1>
 
     <div class="my_auth_box">
-        <div class="my_auth_form_box" style="display: flex;">
+        <div class="my_auth_form_box">
+
 
             <div class="m_auth_inputbox_pet">
                 <form action="/s/user/{{user.id}}/pet/update" method="post" enctype="multipart/form-data">
@@ -63,6 +66,7 @@
                         class="btn">수정</button>
                 </form>
             </div>
+
 
         </div>
 

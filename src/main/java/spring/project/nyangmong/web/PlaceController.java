@@ -2,8 +2,10 @@ package spring.project.nyangmong.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.Null;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,18 +39,6 @@ public class PlaceController {
     private final ImageRepository imageRepository;
     private final HttpSession session;
     private final OptionChange change;
-
-    // 맵 연습중
-    // @GetMapping({ "/", "main", "mainPage" })
-    // public @ResponseBody List<String> load() {
-    // List<Places> pList = placeRepository.findAll();
-    // List<String> points = new ArrayList<>();
-    // for (int i = 0; i < pList.size(); i++) {
-    // points.add(pList.get(i).getLatitude());
-    // points.add(pList.get(i).getLongitude());
-    // }
-    // return points;
-    // }
 
     // 상세보기
 
@@ -151,23 +141,26 @@ public class PlaceController {
     }
 
     @GetMapping("/outline/search")
-    public String searchOutLine(@RequestParam String keyword, Model model) {
-        if (keyword == null) {
+    public String searchOutLine(@RequestParam(defaultValue = "") String keyword, Model model) {
+        if (keyword.equals("")) {
             List<Places> places = placeRepository.findAll();
+            long count = placeRepository.count();
+            model.addAttribute("count", count);
             model.addAttribute("places", places);
-            return "pages/list/outlineList";
+            return "pages/place/search";
         }
-        List<Places> places = placeRepository.searchPlaces(keyword, keyword);
+        List<Places> places = placeRepository.searchPlaces("%keyword%");
         PlaceListDto placeDto = new PlaceListDto();
         placeDto.setPlaces(places);
         for (int i = 0; i < places.size(); i++) {
             placeDto.setTitle(places.get(i).getTitle());
             placeDto.setAddress(places.get(i).getAddress());
         }
-
+        long count = placeRepository.count();
+        model.addAttribute("count", count);
         model.addAttribute("pdto", placeDto);
         model.addAttribute("places", places);
-        return "pages/place/outlineList";
+        return "pages/place/search";
     }
 
     // 데이터베이스 받아오는 url 들어갈때 시간이 많이 걸립니다.
