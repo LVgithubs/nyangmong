@@ -147,15 +147,13 @@
      
              let points = responseParse; // 응답 받은 데이터를 json으로 변환 하여 변수에 저장
      
-            //  console.log(points);
-     
              makeMarker(points); // 좌표를 만드는 함수로 전달
      
          };      
 
          // 좌표를 만드는 함수
         let makeMarker = () => { 
-            console.log(points);
+
             // 좌표값으로 마커 생성
             for (point of points) {
                 var markerOptions = {
@@ -164,6 +162,7 @@
                     icon: './img/pin_default.png'
                 };
                 var marker = new naver.maps.Marker(markerOptions);
+                
                 // 마커 리스너 생성 (마커와 지도 클릭이 별개로 구분되어 필요)
                 naver.maps.Event.addListener(marker, 'click', function(event) {
                     x = event.coord.x;
