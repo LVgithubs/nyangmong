@@ -39,7 +39,9 @@
         }
     }
     async function loading() {
+
         let response = await fetch(`/boards/${page}`);
+
         let responseParse = await response.json();
         if (responseParse.code == 1) {
             pagingDisable(responseParse); // 페이징 버튼 활성화 처리
@@ -56,7 +58,9 @@
         return `<div class="card mb-3">
             <div class="card-body">
                 <h4 class="card-title">${post.title}</h4>
+
                 <a href="/boards/${post.id}" class="btn btn-secondary">상세보기</a>
+
             </div>
         </div>`;
     }

@@ -28,7 +28,9 @@
             content: $("#content").val()
         }
         console.log(writeDto);
+
         let response = await fetch("/s/boards", {
+
             method: "POST",
             body: JSON.stringify(writeDto),
             headers: {

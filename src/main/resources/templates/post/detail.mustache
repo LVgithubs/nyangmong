@@ -16,14 +16,18 @@
     </div>
 
     <div id="auth-box" style="display: none;">
+
         <a href="/s/boards/1/updateForm" class="btn btn-secondary">수정</a>
+
         <button id="btn-delete" class="btn btn-danger">삭제</button>
     </div>
     <!-- 상세정보보기 끝 -->
 
     <!-- 댓글 시작 -->
+
     <div class="card">
         <form action="/s/boards/{{postId}}/comment" method="post">
+
             <div class="card-body">
                 <textarea name="content" class="form-control" rows="1"></textarea>
             </div>
@@ -56,7 +60,9 @@
 
 <script>
     async function deleteComment(commentId) {
+
         let response = await fetch(`/s/api/comment/${commentId}/delete`, {
+
             method: "DELETE"
         });
         let responseParse = await response.json();
@@ -74,8 +80,10 @@
     async function loading() {
         //console.log(location.href);
         let postId = $("#postId").val();
+
         let response = await fetch(`/s/api/boards/${postId}`);
         let responseParse = await response.json();
+
         console.log(responseParse);
         postInfoRender(responseParse);
     }

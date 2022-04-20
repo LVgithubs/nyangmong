@@ -22,7 +22,9 @@ async function join() {
     let joinDto = {
         username: $("#username").val(),
         password: $("#password").val(),
+
         email: $("#email").val()
+
     }
 
     // (2) fetch 요청한다. (json으로 변환해서)

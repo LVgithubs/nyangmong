@@ -9,6 +9,7 @@
             <input id="username" type="text" class="form-control" placeholder="Enter username" required maxlength="12">
         </div>
         <div class="mb-3">
+
             <input id="password" type="password" class="form-control" placeholder="Enter password" required
                 maxlength="12">
         </div>
@@ -19,6 +20,7 @@
 <button id="btn-join" type="button" class="btn btn-primary">회원가입</button>
 </form>
 <!-- 회원가입 폼 끝 -->
+
 
 </div>
 
@@ -32,8 +34,10 @@
         let userDto = {
             username: $("#username").val(),
             password: $("#password").val(),
+
             email: $("#email").val()
         }
+
         // (2) fetch 요청한다. (json으로 변환해서)
         let response = await fetch("/api/join", {
             method: "POST",
