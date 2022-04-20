@@ -28,6 +28,6 @@ public interface PlaceRepository extends JpaRepository<Places, Integer> {
     long countPartName(@Param("partName") String partName);
 
     // 총검색 쿼리
-    @Query(value = "SELECT * FROM places WHERE areaName Like '%:keyword%' OR partName Like '%:keyword%' OR title Like '%:keyword%' OR keyword Like '%:keyword%' OR address Like '%:keyword%' OR content Like '%:keyword%' OR petFacility Like '%:keyword%'  OR mainFacility Like '%:keyword%' OR policyCautions Like '%:keyword%' ", nativeQuery = true)
-    List<Places> totalSearch(@Param("keyword") String category);
+    @Query(value = "SELECT * FROM places WHERE areaName Like %:keyword% OR partName Like %:keyword% OR title Like %:keyword% OR keyword Like %:keyword% OR address Like %:keyword% OR content Like %:keyword% OR petFacility Like %:keyword%  OR mainFacility Like %:keyword% OR policyCautions Like %:keyword%", nativeQuery = true)
+    List<Places> totalSearch(@Param("keyword") String keyword);
 }

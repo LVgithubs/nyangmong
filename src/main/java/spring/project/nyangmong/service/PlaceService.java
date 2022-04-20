@@ -45,6 +45,8 @@ public class PlaceService {
 
     public List<Places> 총검색(String keyword) {
 
+        // System.out.println("서비스 keyword : " + keyword);
+
         return placeRepository.totalSearch(keyword);
     }
 }

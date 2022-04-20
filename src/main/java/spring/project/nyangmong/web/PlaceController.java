@@ -242,7 +242,7 @@ public class PlaceController {
 
             }
         }
-        return "pages/place/outlineList";
+        return "pages/mainPage";
     }
 
 }
