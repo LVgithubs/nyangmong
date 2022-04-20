@@ -1,0 +1,59 @@
+{{> /layout/header}}
+
+<!-- 컨테이너 시작 -->
+<div class="container mt-3">
+
+    <!-- 회원가입 폼 시작 -->
+    <form>
+        <div class="mb-3 mt-3">
+            <input id="username" type="text" class="form-control" placeholder="Enter username" required maxlength="12">
+        </div>
+        <div class="mb-3">
+            <input id="password" type="password" class="form-control" placeholder="Enter password" required
+                maxlength="12">
+        </div>
+        <div class="mb-3">
+            <input id="email" type="email" class="form-control" placeholder="Enter email" required maxlength="30">
+        </div>
+</div>
+<button id="btn-join" type="button" class="btn btn-primary">회원가입</button>
+</form>
+<!-- 회원가입 폼 끝 -->
+
+</div>
+
+<script>
+    // 1. 이벤트 리스너
+    $("#btn-join").click(() => {
+        join();
+    });
+    // 2. 기능
+    async function join() {
+        let userDto = {
+            username: $("#username").val(),
+            password: $("#password").val(),
+            email: $("#email").val()
+        }
+        // (2) fetch 요청한다. (json으로 변환해서)
+        let response = await fetch("/api/join", {
+            method: "POST",
+            body: JSON.stringify(userDto),
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+        });
+        let responseParse = await response.json();
+
+        // (3) 회원가입이 잘 되면 알림창 띄우고 로그인 페이지로 이동한다.
+        if (responseParse.code == 1) {
+            alert("회원가입완료");
+            location.href = "/loginForm";
+        } else {
+            alert('회원가입실패');
+        }
+    }
+</script>
+<script src="/js/user.js"></script>
+
+<!-- 컨테이너 끝 -->
+{{> /layout/footer}}

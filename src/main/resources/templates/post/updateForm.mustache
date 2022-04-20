@@ -1,0 +1,57 @@
+{{> /layout/header}}
+
+<!-- 컨테이너 시작 -->
+<div class="container mt-3">
+
+    <!--  글쓰기 수정 폼 시작 -->
+    <form>
+        <div class="mb-3 mt-3">
+            <input type="text" class="form-control" placeholder="Enter title" value="제목입니다">
+        </div>
+        <div class="mb-3">
+            <textarea id="content" rows="10" class="form-control">
+                내용입니다.
+            </textarea>
+        </div>
+        <button type="button" class="btn btn-secondary">글쓰기 수정완료</button>
+    </form>
+    <!-- 글쓰기 수정 폼 끝 -->
+
+</div>
+<!-- 컨테이너 끝 -->
+
+<script>
+    $('#content').summernote({
+        height: 300
+    });
+
+    async function update() {
+        let id = $("#id").val();
+        let post = {
+            title: $("#title").val(),
+            content: $("#content").val()
+        }
+        console.log(post);
+        let postJson = JSON.stringify(post);
+        console.log(postJson);
+        let response = await fetch("/s/post/" + id, {
+            method: "PUT",
+            body: postJson,
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            }
+        });
+        let responseObject = await response.json();
+        if (responseObject.code == 1) {
+            alert("수정성공");
+            location.href = "/post/" + id;
+        } else {
+            alert("수정실패");
+        }
+    }
+    $("#btn-update").click((event) => {
+        update();
+    });
+</script>
+
+{{> /layout/footer}}
