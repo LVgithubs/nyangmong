@@ -44,8 +44,8 @@ public class Boards { // N (드라이빙 테이블, FK의 주인)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String tag;
-    private String text;
+    // private String tag;
+    // private String text;
 
     @Column(length = 300, nullable = false)
     private String title;
@@ -61,19 +61,19 @@ public class Boards { // N (드라이빙 테이블, FK의 주인)
     // @OneToMany(mappedBy = "boards")
     // private List<PlaceLikes> placelikesList;
 
-    private long PlaceLikesCount; // 좋아요 수
+    // private long PlaceLikesCount; // 좋아요 수
 
-    @Builder
-    public Boards(String tag, String text, User user, long PlaceLikesCount) {
-        this.tag = tag;
-        this.text = text;
-        this.user = user;
-        this.PlaceLikesCount = PlaceLikesCount;
-    }
+    // @Builder
+    // public Boards(String tag, String text, User user, long PlaceLikesCount) {
+    // this.tag = tag;
+    // this.text = text;
+    // this.user = user;
+    // this.PlaceLikesCount = PlaceLikesCount;
+    // }
 
-    public void setPlaceLikesCount(long PlaceLikesCount) {
-        this.PlaceLikesCount = PlaceLikesCount;
-    }
+    // public void setPlaceLikesCount(long PlaceLikesCount) {
+    // this.PlaceLikesCount = PlaceLikesCount;
+    // }
 
     @JsonIgnoreProperties({ "password" })
     // @JsonIgnoreProperties({"boardsList"})

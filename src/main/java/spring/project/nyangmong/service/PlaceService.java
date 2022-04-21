@@ -3,19 +3,12 @@ package spring.project.nyangmong.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import spring.project.nyangmong.domain.image.ImageRepository;
-import spring.project.nyangmong.domain.image.PublicDataImage;
 import spring.project.nyangmong.domain.places.PlaceRepository;
 import spring.project.nyangmong.domain.places.Places;
-import spring.project.nyangmong.web.dto.craw.PlaceDto;
 
 @RequiredArgsConstructor
 @Service

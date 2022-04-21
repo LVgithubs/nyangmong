@@ -23,12 +23,9 @@ import spring.project.nyangmong.domain.places.Places;
 import spring.project.nyangmong.service.PlaceService;
 import spring.project.nyangmong.util.ContentSeqDownload;
 import spring.project.nyangmong.util.OptionChange;
-import spring.project.nyangmong.web.dto.craw.ImageDto;
 import spring.project.nyangmong.web.dto.craw.PlaceDto;
 import spring.project.nyangmong.web.dto.craw.Result;
 import spring.project.nyangmong.web.dto.places.ImageListDto;
-import spring.project.nyangmong.web.dto.places.PlaceListDto;
-import spring.project.nyangmong.web.dto.places.PlaceMapDto;
 import spring.project.nyangmong.web.dto.places.PlacesOptionDto;
 
 @RequiredArgsConstructor
@@ -237,13 +234,10 @@ public class PlaceController {
                                 .build();
                         images.add(image);
                     }
-
                     imageRepository.saveAll(images);
                 }
-
             }
         }
         return "pages/place/outlineList";
     }
-
 }

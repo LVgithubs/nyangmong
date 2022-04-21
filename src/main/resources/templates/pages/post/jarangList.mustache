@@ -38,8 +38,9 @@
                     <a href="/s/boards/write-form">글쓰기</a>
                 </button>
             </div>
-            {{#boards.content}}
+
             <div class="row">
+                {{#boards.content}}
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
                         <a href="/boards/{{id}}">
@@ -51,6 +52,7 @@
                     </div>
                 </div>
                 {{/boards.content}}
+
             </div>
         </div>
     </div>

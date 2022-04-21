@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,10 +47,8 @@ public class BoardsController {
             } else {
                 dto.setAuth(false); // or false
             }
-
             comments.add(dto);
         }
-
         model.addAttribute("comments", comments);
         model.addAttribute("boardsId", id);
         return "pages/post/jarangDetail";
@@ -60,7 +57,9 @@ public class BoardsController {
     // 페이지 주기
     // /s 붙었으니까 자동으로 인터셉터가 인증 체크함. (완료)
     @GetMapping("/s/boards/write-form")
-    public String writeForm() {
+    public String writeForm(@RequestParam(defaultValue = "0") Integer page, Model model) {
+        PageRequest pq = PageRequest.of(page, 3);
+        model.addAttribute("boardswrite", boardsRepository.findAll(pq));
         return "pages/post/jarangWriteForm";
     }
 
@@ -73,6 +72,7 @@ public class BoardsController {
     public String list(@RequestParam(defaultValue = "0") Integer page, Model model) {
         PageRequest pq = PageRequest.of(page, 10);
         // 응답의 DTO를 만들어서 <- posts 를 옮김. (라이브러리 있음)
+         model.addAttribute("boards", boardsRepository.findAll(pq));
         return "pages/post/jarangList";
     }
 
@@ -82,4 +82,4 @@ public class BoardsController {
         // 응답의 DTO를 만들어서 <- posts 를 옮김. (라이브러리 있음)
         return "pages/post/noticeList";
     }
-}
+} 
