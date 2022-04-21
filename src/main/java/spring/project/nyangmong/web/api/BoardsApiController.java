@@ -59,7 +59,7 @@ public class BoardsApiController {
         return new ResponseDto<>(1, "성공", null);
     }
 
-    @PostMapping("/s/boards/write")
+    @PostMapping("/s/boards/{id}/update")
     public ResponseDto<?> write(@RequestBody WriteDto writeDto) {
 
         User principal = (User) session.getAttribute("principal");
