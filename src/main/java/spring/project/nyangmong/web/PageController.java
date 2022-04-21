@@ -121,5 +121,4 @@ public class PageController {
     public String noticeUpdateForm() {
         return "pages/post/noticeUpdateForm";
     }
-
 }

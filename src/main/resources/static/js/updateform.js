@@ -31,4 +31,3 @@ $("#btn-update").click(()=>{
             alert("업데이트 실패");
         }
     }
-

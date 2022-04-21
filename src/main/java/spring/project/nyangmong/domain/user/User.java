@@ -108,5 +108,4 @@ public class User {
     // 로그인할 때 유저아이디 Remember me 하려고 추가함
     @Transient
     private String remember;
-
 }

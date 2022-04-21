@@ -19,7 +19,6 @@ import spring.project.nyangmong.domain.user.User;
 import spring.project.nyangmong.service.BoardsService;
 import spring.project.nyangmong.service.PlaceLikesService;
 import spring.project.nyangmong.web.dto.members.ResponseDto;
-import spring.project.nyangmong.web.dto.members.boards.DetailResponseDto;
 import spring.project.nyangmong.web.dto.members.boards.WriteDto;
 
 @RequiredArgsConstructor
@@ -29,6 +28,13 @@ public class BoardsApiController {
     private final PlaceLikesService placelikesService;
 
     private final HttpSession session;
+
+    @GetMapping("/s/api/boards/{id}")
+    public ResponseDto<?> list(Integer page) {
+        Page<Boards> boards = boardsService.게시글목록(page);
+        // 응답의 DTO를 만들어서 <- boards 를 옮김. (라이브러리 있음)
+        return new ResponseDto<>(1, "성공", boards);
+    }
 
     // UPDATE 글수정 /post/{id} - 글상세보기 페이지가기 - 인증 O
     @PutMapping("/s/api/boards/{id}/update")
