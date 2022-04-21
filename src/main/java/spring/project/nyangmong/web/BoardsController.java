@@ -5,14 +5,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import spring.project.nyangmong.domain.boards.Boards;
@@ -58,15 +56,12 @@ public class BoardsController {
 
     // 페이지 주기
     // /s 붙었으니까 자동으로 인터셉터가 인증 체크함. (완료)
-    @GetMapping("/s/boards/write")
-    public String writeForm() {
+    @GetMapping("/s/boards/write-form")
+    public String writeForm(@RequestParam(defaultValue = "0") Integer page, Model model) {
+        PageRequest pq = PageRequest.of(page, 3);
+        model.addAttribute("boardswrite", boardsRepositoty.findAll(pq));
         return "pages/post/jarangWriteForm";
     }
-
-    // @GetMapping({ "/boards" })
-    // public String home() {
-    // return "pages/post/jarangList";
-    // }
 
     @GetMapping("/boards")
     public String list(@RequestParam(defaultValue = "0") Integer page, Model model) {

@@ -3,9 +3,10 @@ package spring.project.nyangmong.web.api;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
-import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -29,12 +30,12 @@ public class BoardsApiController {
 
     private final HttpSession session;
 
-    @GetMapping("/s/api/boards/{id}")
-    public ResponseDto<?> list(Integer page) {
-        Page<Boards> boards = boardsService.게시글목록(page);
-        // 응답의 DTO를 만들어서 <- boards 를 옮김. (라이브러리 있음)
-        return new ResponseDto<>(1, "성공", boards);
-    }
+    // @GetMapping("/s/api/boards/{id}")
+    // public ResponseDto<?> list(Integer page) {
+    // Page<Boards> boards = boardsService.게시글목록(page);
+    // 응답의 DTO를 만들어서 <- boards 를 옮김. (라이브러리 있음)
+    // return new ResponseDto<>(1, "성공", boards);
+    // }
 
     // UPDATE 글수정 /post/{id} - 글상세보기 페이지가기 - 인증 O
     @PutMapping("/s/api/boards/{id}/update")
@@ -65,8 +66,8 @@ public class BoardsApiController {
         return new ResponseDto<>(1, "성공", null);
     }
 
-    @PostMapping("/s/boards/write")
-    public ResponseDto<?> write(@RequestBody WriteDto writeDto) {
+    @PostMapping("/s/boards/{id}/update")
+    public ResponseDto<?> write(@ModelAttribute WriteDto writeDto) {
 
         User principal = (User) session.getAttribute("principal");
         Boards boards = writeDto.toEntity(principal);
