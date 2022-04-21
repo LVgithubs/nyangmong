@@ -243,7 +243,7 @@ public class PlaceController {
 
             }
         }
-        return "pages/place/outlineList";
+        return "redirect:/s/admin/adminMain";
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import spring.project.nyangmong.domain.places.PlaceRepository;
@@ -127,4 +128,8 @@ public class PageController {
         return "pages/post/noticeUpdateForm";
     }
 
+    @GetMapping("/bbq")
+    public @ResponseBody String bhc() {
+        return "";
+    }
 }

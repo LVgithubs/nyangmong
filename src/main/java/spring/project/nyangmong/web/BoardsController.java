@@ -26,11 +26,7 @@ public class BoardsController {
 
     @GetMapping("/boards/{id}")
     public String detail(@PathVariable Integer id, Model model) {
-        Boards boardsEntity = boardsService.글상세보기(id);
-        User principal = (User) session.getAttribute("principal");
-
-        List<CommentResponseDto> comments = new ArrayList<>();
-        return "pages/detail/jarangDetail";
+              return "pages/detail/jarangDetail";
     }
 
     @GetMapping("/s/boards/writeForm")
@@ -52,5 +48,7 @@ public class BoardsController {
     public String noticeWrite() {
         return "pages/post/noticeWriteForm";
     }
+
+
 
 }
