@@ -149,25 +149,67 @@
                 // 체크박스 체크 확인 체크=true / 체크해제=false
                 if(!$("#hotelOption").is(':checked')){
                     searchOption.hotel = false;
+                } else{
+                    searchOption.hotel = true;
                 }
                 if(!$("#cafeOption").is(':checked')){
                     searchOption.cafe = false;
+                } else {
+                    searchOption.cafe = true;
                 }
                 if(!$("#activityOption").is(':checked')){
                     searchOption.activity = false;
+                } else {
+                    searchOption.activity = true;
                 }
                 if(!$("#spotOption").is(':checked')){
                     searchOption.spot = false;
+                } else {
+                    searchOption.spot = true;
                 }
                 if(!$("#hospitalOption").is(':checked')){
                     searchOption.hospital = false;
+                } else{
+                    searchOption.hospital = true;
                 }
                 totalSearch();
             });
-            // naver.maps.Event.addDOMListener(customControl.getElement(), 'mouseout', function() {
-            //     let keyword = $("#keyword").val();
-                // totalSearch();
-            // });
+            naver.maps.Event.addDOMListener(customControl.getElement(), 'keyup', ()=>{
+                $("#keyword").keyup((event)=>{
+                    if(event.keyCode == 13){
+                        searchOption.keyword = $("#keyword").val();
+                        // 체크박스 체크 확인 체크=true / 체크해제=false
+                        if(!$("#hotelOption").is(':checked')){
+                            searchOption.hotel = false;
+                        } else{
+                            searchOption.hotel = true;
+                        }
+                        if(!$("#cafeOption").is(':checked')){
+                            searchOption.cafe = false;
+                        } else {
+                            searchOption.cafe = true;
+                        }
+                        if(!$("#activityOption").is(':checked')){
+                            searchOption.activity = false;
+                        } else {
+                            searchOption.activity = true;
+                        }
+                        if(!$("#spotOption").is(':checked')){
+                            searchOption.spot = false;
+                        } else {
+                            searchOption.spot = true;
+                        }
+                        if(!$("#hospitalOption").is(':checked')){
+                            searchOption.hospital = false;
+                        } else{
+                            searchOption.hospital = true;
+                        }
+                        totalSearch();
+                    }
+                });
+                
+            });
+
         });
 
        // 마커 저장 변수

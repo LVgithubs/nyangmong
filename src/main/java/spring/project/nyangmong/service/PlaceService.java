@@ -1,5 +1,6 @@
 package spring.project.nyangmong.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import spring.project.nyangmong.domain.image.ImageRepository;
 import spring.project.nyangmong.domain.places.PlaceRepository;
 import spring.project.nyangmong.domain.places.Places;
+import spring.project.nyangmong.web.dto.places.MapSearchDto;
 
 @RequiredArgsConstructor
 @Service
@@ -43,10 +45,54 @@ public class PlaceService {
         return false;
     }
 
-    public List<Places> 총검색(String keyword) {
+    public List<Places> 총검색(MapSearchDto mapSearchDto) {
 
-        // System.out.println("서비스 keyword : " + keyword);
+        String keyword = mapSearchDto.getKeyword();
 
-        return placeRepository.totalSearch(keyword);
+        List<String> categorys = new ArrayList<>();
+
+        if (mapSearchDto.getCafe().equals("true")) {
+            categorys.add("식음료");
+        }
+        if (mapSearchDto.getActivity().equals("true")) {
+            categorys.add("체험");
+        }
+        if (mapSearchDto.getHospital().equals("true")) {
+            categorys.add("동물병원");
+        }
+        if (mapSearchDto.getHotel().equals("true")) {
+            categorys.add("숙박");
+        }
+        if (mapSearchDto.getSpot().equals("true")) {
+            categorys.add("관광지");
+        }
+        System.out.println("쿼리검색 카테고리 개수 : " + categorys.size());
+
+        if (categorys.size() == 5) {
+            List<Places> list = placeRepository.totalSearch(keyword);
+            System.out.println("검색 결과 사이즈 : " + list.size());
+            return list;
+        } else if (categorys.size() == 4) {
+            List<Places> list = placeRepository.totalSearch(keyword, categorys.get(0), categorys.get(1),
+                    categorys.get(2),
+                    categorys.get(3));
+            System.out.println("검색 결과 사이즈 : " + list.size());
+            return list;
+        } else if (categorys.size() == 3) {
+            List<Places> list = placeRepository.totalSearch(keyword, categorys.get(0), categorys.get(1),
+                    categorys.get(2));
+            System.out.println("검색 결과 사이즈 : " + list.size());
+            return list;
+        } else if (categorys.size() == 2) {
+            List<Places> list = placeRepository.totalSearch(keyword, categorys.get(0), categorys.get(1));
+            System.out.println("검색 결과 사이즈 : " + list.size());
+            return list;
+        } else if (categorys.size() == 1) {
+            System.out.println("검색 카테고리 : " + categorys.get(0));
+            List<Places> list = placeRepository.totalSearch(keyword, categorys.get(0));
+            System.out.println("검색 결과 사이즈 : " + list.size());
+            return list;
+        }
+        return null;
     }
 }

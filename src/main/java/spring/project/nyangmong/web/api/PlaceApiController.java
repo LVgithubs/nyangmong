@@ -36,15 +36,11 @@ public class PlaceApiController {
     @PostMapping("/api/place/search")
     public ResponseEntity<?> totalSearch(@RequestBody MapSearchDto mapsearchDto) {
 
+        System.out.println("응답Dto : " + mapsearchDto);
+
         System.out.println("keyword : " + mapsearchDto.getKeyword());
 
-        // String[] options = option.split(",");
-
-        // for (String category : options) {
-        // System.out.println(category);
-        // }
-
-        List<Places> places = placeService.총검색(mapsearchDto.getKeyword());
+        List<Places> places = placeService.총검색(mapsearchDto);
 
         // System.out.println("plcaes크기 : " + places.size());
 

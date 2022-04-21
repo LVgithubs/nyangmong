@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class MapSearchDto {
 
     private String keyword;
-    private boolean cafe;
-    private boolean hotel;
-    private boolean activity;
-    private boolean hospital;
-    private boolean spot;
+    private String cafe;
+    private String hotel;
+    private String activity;
+    private String hospital;
+    private String spot;
 }
