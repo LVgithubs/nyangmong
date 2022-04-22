@@ -19,6 +19,12 @@ import spring.project.nyangmong.web.dto.members.user.UpdateDto;
 public class UserService {
     private final UserRepository userRepository;
 
+    // 회원 탈퇴하기
+    @Transactional
+    public void 회원탈퇴(Integer id) {
+        userRepository.deleteById(id);
+    }
+
     // 아이디 찾기
     @Transactional
     public String 아이디찾기(IdFindReqDto idFindReqDto) {
