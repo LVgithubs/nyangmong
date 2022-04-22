@@ -373,6 +373,9 @@ ul.tabs li.current{
 	display: inherit;
 }
 
+.m_box_like_place {
+    border: 2px solid  #b4b2b2;;
+}
 
 
 /* 메인 페이지 끝 */

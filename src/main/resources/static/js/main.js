@@ -41,7 +41,7 @@
     //지도 옵션
      var mapOptions = {
             center: new naver.maps.LatLng(38.1306367046835, 127.982807156954),
-            zoom: 10,
+            zoom: 9,
 
             // 맵 타입 컨트롤러 생성
             mapTypeControl: true,
@@ -144,6 +144,9 @@
             customControl.setMap(map);
 
             naver.maps.Event.addDOMListener(customControl.getElement(), 'click', function() {
+                for(marker of markers){
+                    marker.setMap(null);
+                }
                 // search(customControl.getElement);
                 searchOption.keyword = $("#keyword").val();
                 // 체크박스 체크 확인 체크=true / 체크해제=false
@@ -177,6 +180,9 @@
             naver.maps.Event.addDOMListener(customControl.getElement(), 'keyup', ()=>{
                 $("#keyword").keyup((event)=>{
                     if(event.keyCode == 13){
+                        for(marker of markers){
+                            marker.setMap(null);
+                        }
                         searchOption.keyword = $("#keyword").val();
                         // 체크박스 체크 확인 체크=true / 체크해제=false
                         if(!$("#hotelOption").is(':checked')){
@@ -238,10 +244,6 @@
 
          // 좌표를 만드는 함수
         let makeMarker = (points) => { 
-
-            for(marker of markers){
-                marker.setMap(null);
-            }
 
             // 좌표값으로 마커 생성
             for (point of points) {

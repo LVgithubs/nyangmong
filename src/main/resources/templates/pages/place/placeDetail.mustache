@@ -42,7 +42,7 @@
                     <div class="carousel-inner">
                         {{#imageList}}
                         <div class="carousel-item active" data-bs-interval="2000">
-                            <img style=" border-radius: 25px; object-fit:cover; height:90%; border: 8px solid #b4b2b2;" src="{{imgurl}}" alt="#" class="m_box_img_slide m_mh_lg">
+                            <img style="object-fit:cover; height:90%;" src="{{imgurl}}" alt="#" class="m_box_img_slide m_mh_lg">
                         </div>
                         {{/imageList}}
                     </div>
@@ -208,9 +208,12 @@
         let status = $("#btn-like")[0].innerText;
         console.log(status);
         if (status == "favorite_border") {
+            console.log($("#btn-like"));
             $("#btn-like")[0].innerText = 'favorite';
+            $("#btn-like").addClass("text-danger");
         } else {
             $("#btn-like")[0].innerText = 'favorite_border';
+            $("#btn-like").removeClass("text-danger");
         }
     });
     // 즐겨찾기 버튼 활성화, 비활성화
@@ -219,8 +222,10 @@
         console.log(status);
         if (status == "star_border") {
             $("#btn-favorite")[0].innerText = 'star';
+            $("#btn-favorite").addClass("text-warning");
         } else {
             $("#btn-favorite")[0].innerText = 'star_border';
+            $("#btn-favorite").removeClass("text-warning");
         }
     });
 

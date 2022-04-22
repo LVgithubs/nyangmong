@@ -143,19 +143,28 @@ public class PlaceController {
 
     @GetMapping("/place/search")
     public String searchPartName(@RequestParam String partName, Model model) {
-        List<Places> places = placeService.분류검색(partName);
         long count = placeRepository.countPartName(partName);
+        List<Places> places = placeService.분류검색(partName);
+        if (!partName.equals("동물병원")) {
+            List<InfoRespDto> InfoListRespDto = new ArrayList<>();
+            List<String> placesImages = ChooseImg.imgList(places);
+            for (int i = 0; i < places.size(); i++) {
+                InfoRespDto infoRespDto = new InfoRespDto(places.get(i), placesImages.get(i));
+                InfoListRespDto.add(infoRespDto);
+            }
+            model.addAttribute("InfoListRespDto", InfoListRespDto);
+        } else {
+            model.addAttribute("InfoListRespDto", places);
+        }
         // long count = placeRepository.countPartName(partName);
         // model.addAttribute("count", count);
-        PlaceListDto placeDto = new PlaceListDto();
-        placeDto.setPlaces(places);
-        for (int i = 0; i < places.size(); i++) {
-            placeDto.setTitle(places.get(i).getTitle());
-            placeDto.setAddress(places.get(i).getAddress());
-        }
+        // PlaceListDto placeDto = new PlaceListDto();
+        // placeDto.setPlaces(places);
+        // placeDto.setTitle(places.get(i).getTitle());
+        // placeDto.setAddress(places.get(i).getAddress());
+        // model.addAttribute("pdto", placeDto);
+        // model.addAttribute("places", places);
         model.addAttribute("count", count);
-        model.addAttribute("pdto", placeDto);
-        model.addAttribute("places", places);
         if (partName.equals("관광지")) {
             return "pages/place/spotList";
         } else if (partName.equals("동물병원")) {
@@ -273,7 +282,7 @@ public class PlaceController {
 
             }
         }
-        return "pages/mainPage";
+        return "redirect:/";
     }
 
 }
