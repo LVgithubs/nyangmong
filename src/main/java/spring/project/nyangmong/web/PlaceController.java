@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,7 +56,7 @@ public class PlaceController {
     // return "pages/place/placeDetail";
     // }
 
-    @GetMapping("/place/{contentSeq}") // 이거 JSON 불러오는데 맞나요?
+    @GetMapping("/place/{contentSeq}")
     public String detailPlaces(@PathVariable Integer contentSeq, Model model) {
         Places places = placeService.상세보기(contentSeq);
         List<PublicDataImage> imageList = imageRepository.ImagecontentSeq(contentSeq);
@@ -141,6 +143,12 @@ public class PlaceController {
         return "/pages/place/outlineList";
     }
 
+    @GetMapping("test/place/list")
+    public @ResponseBody Page<Places> listTest(@RequestParam(defaultValue = "0") Integer page) {
+        PageRequest pq = PageRequest.of(page, 24);
+        return placeRepository.searchPartName("식음료", pq);
+    }
+
     @GetMapping("/place/search")
     public String searchPartName(@RequestParam String partName, Model model) {
         long count = placeRepository.countPartName(partName);
@@ -181,12 +189,18 @@ public class PlaceController {
     }
 
     @GetMapping("/outline/search")
-    public String searchOutLine(@RequestParam(defaultValue = " ") String keyword, Model model) {
+    public String searchOutLine(@RequestParam(defaultValue = "") String keyword,
+            @RequestParam(defaultValue = "0") Integer page, Model model) {
         if (keyword.equals("")) {
-            List<Places> places = placeRepository.findAll();
-            model.addAttribute("places", places);
-            return "pages/list/outlineList";
+            long count = placeRepository.count();
+            PageRequest pq = PageRequest.of(page, 16);
+            model.addAttribute("nextPage", page + 1);
+            model.addAttribute("previewPage", page - 1);
+            model.addAttribute("count", count);
+            model.addAttribute("places", placeRepository.findAll(pq));
+            return "pages/place/search";
         }
+
         List<Places> places = placeRepository.searchPlaces(keyword);
         PlaceListDto placeDto = new PlaceListDto();
         placeDto.setPlaces(places);
@@ -198,6 +212,7 @@ public class PlaceController {
         model.addAttribute("pdto", placeDto);
         model.addAttribute("places", places);
         return "pages/place/outlineList";
+
     }
 
     // 데이터베이스 받아오는 url 들어갈때 시간이 많이 걸립니다.

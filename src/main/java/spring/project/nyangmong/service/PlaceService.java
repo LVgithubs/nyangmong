@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -26,11 +30,6 @@ public class PlaceService {
         } else {
             throw new RuntimeException("해당 관광정보를 찾을 수 없습니다");
         }
-    }
-
-    public List<Places> 분류검색(String partName) {
-        List<Places> pList = placeRepository.searchPartName(partName);
-        return pList;
     }
 
     public List<Places> 전체보기() {

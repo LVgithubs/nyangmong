@@ -55,6 +55,7 @@
     <div>
         </div>
         <div class="row">
+
             {{#InfoListRespDto}}
             <div class="col-md-3 m_mb_md">
                 <div class="m_box_info_place">
@@ -72,16 +73,23 @@
                 </div>
             </div>
             {{/InfoListRespDto}}
+
         </div>
     </div>
-
-       <div class="paging-div">
+    <div class="paging-div">
  <ul class="pagination" id="pagination">
-    <li class="page-item"><a class="page-link" href="">이전</a></li>
-    <li class="page-item"><a class="page-link" href="">1</a></li>
-    <li class="page-item"><a class="page-link" href="">2</a></li>
-    <li class="page-item"><a class="page-link" href="">3</a></li>
-    <li><a class="page-link" href="">다음</a></li>
+     {{#places.first}}
+    <li id="li-prev"class="page-item disabled"><a id="btn-prev" class="page-link" href="?partName={{partName}}&page={{previewPage}}">이전</a></li>
+         {{/places.first}}
+         {{^places.first}}
+   <li id="li-prev"class="page-item"><a id="btn-prev" class="page-link" href="?partName={{partName}}&page={{previewPage}}">이전</a></li>
+         {{/places.first}}
+     {{#places.last}}    
+    <li id="li-prev"class="page-item disabled"><a id="btn-prev" class="page-link" href="?partName={{partName}}&page={{nextPage}}">다음</a></li>
+         {{/places.last}}
+         {{^places.last}}
+    <li id="li-prev"class="page-item"><a id="btn-prev" class="page-link" href="?partName={{partName}}&page={{nextPage}}">다음</a></li>         
+         {{/places.last}}
 </ul>
     </div>
 </div>
