@@ -34,22 +34,25 @@
         <h2 id="title"  class="text-center m_txt_title ">{{partName}}</h2>
     <hr>
     <div class="mx-auto m_mh_md">
-        <div class="d-flex m_pt_lg " style="justify-content: space-evenly; align-items: center ">
-            <div class="col-lg-6" style="height: 100%;">
+        <div class="d-flex m_pt_lg align-items-center" style="justify-content: space-evenly; align-items: center ">
+            <div class="col-lg-7">
                 <div id="demo" class="slide container" style="width: 100%;" data-bs-ride="carousel">
 
                     <!-- The slideshow/carousel -->
                     <div class="carousel-inner">
                         {{#imageList}}
-                        <div class="carousel-item active" data-bs-interval="2000">
-                            <img style="object-fit:cover; height:90%;" src="{{imgurl}}" alt="#" class="m_box_img_slide m_mh_lg">
+                        <div class="carousel-item m_mt_lg" data-bs-interval="3000">
+                                <img src="{{imgurl}}" alt="#" class="m_box_img_slide"  style="object-fit:cover; height:90%; ">
                         </div>
                         {{/imageList}}
+                        <div class="carousel-item active" data-bs-interval="3000">
+                            <img style="object-fit:cover; height:90%;" src="/images/logo.png" alt="#" class="m_box_img_slide m_mh_lg">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="m_bg_primary col-lg-5 d-flex" style=" border-radius: 25px;  padding: 20px; ">
+            <div class="m_bg_primary col-lg-5 d-flex" style=" border-radius: 25px;  padding: 20px; height:430px">
                 <div style="position: relative">
                     <!-- 좋아요,즐찾버튼 시작 -->
                     <div class="d-flex" style="position: absolute; left: 350px; top: -35px">
@@ -65,8 +68,8 @@
                     </div>
                     <!-- 좋아요, 즐찾버튼 끝 -->
 
-                    <div class="m_ph_sm m_txt_title m_font_xxl">{{partName}}</div>
-                    <div class="m_ph_sm m_center_column" >
+                    <div class="m_ph_sm m_txt_title m_font_xxl">{{title}}</div>
+                    <div class="m_ph_sm m_center_column" > 
                         <div class="m_txt_title m_font_xl">주소</div>
                         <div class="m_pl_sm m_font_md ">{{address}}</div>
                     </div>
