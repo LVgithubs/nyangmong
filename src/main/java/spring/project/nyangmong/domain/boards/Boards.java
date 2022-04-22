@@ -23,10 +23,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import spring.project.nyangmong.domain.comment.Comment;
+import spring.project.nyangmong.domain.placelikes.PlaceLikes;
 import spring.project.nyangmong.domain.user.User;
 
 /**
@@ -57,11 +57,11 @@ public class Boards { // N (드라이빙 테이블, FK의 주인)
     @Column
     private Integer pageCount; // 조회수
 
-    // @JsonIgnoreProperties({ "boards" })
-    // @OneToMany(mappedBy = "boards")
-    // private List<PlaceLikes> placelikesList;
+    @JsonIgnoreProperties({ "boards" })
+    @OneToMany(mappedBy = "boards")
+    private List<PlaceLikes> placelikesList;
 
-    // private long PlaceLikesCount; // 좋아요 수
+    private long PlaceLikesCount; // 좋아요 수
 
     // @Builder
     // public Boards(String tag, String text, User user, long PlaceLikesCount) {

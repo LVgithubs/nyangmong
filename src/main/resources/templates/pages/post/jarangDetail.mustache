@@ -10,20 +10,23 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="container List-container">
                     <hr>
+                    {{#boards}}
                     <div class="row mt-1 header">
                         <div class="col-1 board-title">제목</div>
-                        <p class="col-8" style="word-break:break-all;"> {{boards.title}}</p>
-                        <p class="col-1"> {{boards.createDate}} </p>
-                        <p class="col-1">{{boards.user.userName}}</p>
-                        <p class="col-1">{{boards.pageCount}}</p>
+                        <p class="col-8" style="word-break:break-all;"> title</p>
+                        <p class="col-1"> createDate </p>
+                        <p class="col-1">userName</p>
+                        <p class="col-1">pageCount</p>
                     </div>
-
+{{/boards}}
+{{#post}}
                     <div class="board-container">
                         <br>
                         <p class="content" style="word-break:break-all;">
-                            {{{post.content}}}
+                            content
                         </p>
                     </div>
+                    {{/post}}
                     <br>
 
                     <div class="m_feeling_div">
@@ -50,7 +53,8 @@
                         <div class="card-header bg-light">
                             <i class="fa fa-comment fa"></i> COMMENT
                         </div>
-                        <form action="/s/boards/{{postId}}/comment" method="post">
+           
+                        <form action="/s/boards/{Id}/comment" method="post">
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">

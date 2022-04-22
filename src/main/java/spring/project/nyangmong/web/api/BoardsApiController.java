@@ -89,5 +89,3 @@ public class BoardsApiController {
     // placelikesService.unplacelikes(boardsId, authentication.getUsername());
     // }
 }
-
-    
