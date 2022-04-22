@@ -40,18 +40,18 @@
             </div>
 
             <div class="row">
-                {{#boards.content}}
+                {{#boards}}
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">
                         <a href="/boards/{{id}}">
                             <img class="m_box_image" src="images/cat.jpg">
                         </a>
                         <div class="caption">
-                            <div class="m_font_lg m_mt_sm" style="font-weight: bold;">{{title}}</div>
+                            <div class="m_font_lg m_mt_sm" style="font-weight: bold;">{{.}}</div>
                         </div>
                     </div>
                 </div>
-                {{/boards.content}}
+                {{/boards}}
 
             </div>
         </div>

@@ -68,7 +68,7 @@ public class BoardsApiController {
 
     @PostMapping("/s/boards/{id}/update")
     public ResponseDto<?> write(@RequestBody WriteDto writeDto) {
-        // public ResponseDto<?> write(@ModelAttribute WriteDto writeDto) {
+        // System.out.println("Dto : " + writeDto);
         User principal = (User) session.getAttribute("principal");
         Boards boards = writeDto.toEntity(principal);
         // 원래는 그냥 dto바로 넘겼는데, 지금 dto를 넘기면 session값 두개 넘겨야 해서 하나로 합쳐서 넘김
@@ -78,8 +78,8 @@ public class BoardsApiController {
     }
 
     // @PostMapping("/s/user/{id}/boardlike")
-    // public void likes(@PathVariable long boardsId, Authentication authentication)
-    // {
+    // public void likes(@PathVariable long boardsId, Authentication
+    // authentication){
     // placelikesService.placelikes(boardsId, authentication.getUsername());
     // }
 

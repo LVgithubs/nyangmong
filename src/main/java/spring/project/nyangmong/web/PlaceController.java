@@ -167,7 +167,7 @@ public class PlaceController {
 
             List<Integer> contentSeqList = new ContentSeqDownload().contentSeqDown(k);
 
-            System.out.println(contentSeqList);
+            // System.out.println(contentSeqList);
 
             RestTemplate rt = new RestTemplate();
             for (int j = 0; j < contentSeqList.size(); j++) {

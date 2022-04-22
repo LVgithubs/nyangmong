@@ -19,14 +19,14 @@
                         <p class="col-1">pageCount</p>
                     </div>
 {{/boards}}
-{{#post}}
+{{#boards}}
                     <div class="board-container">
                         <br>
                         <p class="content" style="word-break:break-all;">
                             content
                         </p>
                     </div>
-                    {{/post}}
+                   
                     <br>
 
                     <div class="m_feeling_div">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <br>
-
+ {{/boards}}
                     <button style="background-color: #E1E2E1; float: right; margin: 10px;" onclick="history.back()"
                         class="btn">목록으로</button>
                     {{#auth}}
@@ -53,8 +53,7 @@
                         <div class="card-header bg-light">
                             <i class="fa fa-comment fa"></i> COMMENT
                         </div>
-           
-                        <form action="/s/boards/{Id}/comment" method="post">
+                        <form action="/s/boards/{{postId}}/comment" method="post">
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">

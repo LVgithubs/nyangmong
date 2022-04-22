@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 public class AdminController {
-
     @GetMapping("/s/admin/main")
     public String adminMain() {
         return "pages/admin/adminMain";

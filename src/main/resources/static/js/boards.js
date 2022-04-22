@@ -9,10 +9,10 @@ async function write() {
         title: $("#title").val(),
         content: $("#summernote").val()
     }
-
-    //console.log(writeDto);
-
-    let response = await fetch("/s/post", {
+ let id = $("#userId").val();
+    console.log(writeDto);
+    console.log(id);
+    let response = await fetch(`/s/boards/${id}/update`, {
         method: "POST",
         body: JSON.stringify(writeDto),
         headers: {
