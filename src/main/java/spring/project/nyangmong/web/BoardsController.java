@@ -104,7 +104,9 @@ public class BoardsController {
     }
 
     @GetMapping("/s/notice/write-form")
-    public String noticewriteForm() {
+    public String noticewriteForm(@RequestParam(defaultValue = "0") Integer page, Model model) {
+        PageRequest pq = PageRequest.of(page, 3);
+        model.addAttribute("noticewrite", boardsRepository.findAll(pq));
         return "pages/post/noticeWriteForm";
     }
 
