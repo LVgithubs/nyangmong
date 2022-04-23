@@ -6,6 +6,8 @@ server:
       charset: utf-8
     session:
       timeout: 30
+      tracking-modes:
+      - cookie
 
 
 spring:
@@ -19,7 +21,7 @@ spring:
 
   jpa:
     open-in-view: true
-    hibernate:
+    hibernate: 
       ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
@@ -30,3 +32,5 @@ spring:
   output:
     ansi:
       enabled: always
+
+      

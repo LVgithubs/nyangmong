@@ -34,23 +34,28 @@
     <h2 id="title" class="text-center m_txt_title ">{{partName}}</h2>
     <hr>
     <div class="mx-auto m_mh_md">
-        <div class="d-flex m_pt_lg " style="justify-content: space-evenly; align-items: center ">
-            <div class="col-lg-6" style="height: 100%;">
+        <div class="d-flex m_pt_lg align-items-center" style="justify-content: space-evenly; align-items: center ">
+            <div class="col-lg-7">
                 <div id="demo" class="slide container" style="width: 100%;" data-bs-ride="carousel">
 
                     <!-- The slideshow/carousel -->
                     <div class="carousel-inner">
                         {{#imageList}}
+
                         <div class="carousel-item active" data-bs-interval="2000">
                             <img style=" border-radius: 25px; object-fit:cover; height:90%; border: 8px solid #b4b2b2;"
                                 src="{{imgurl}}" alt="#" class="m_box_img_slide m_mh_lg">
+
                         </div>
                         {{/imageList}}
+                        <div class="carousel-item active" data-bs-interval="3000">
+                            <img style="object-fit:cover; height:90%;" src="/images/logo.png" alt="#" class="m_box_img_slide m_mh_lg">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="m_bg_primary col-lg-5 d-flex" style=" border-radius: 25px;  padding: 20px; ">
+            <div class="m_bg_primary col-lg-5 d-flex" style=" border-radius: 25px;  padding: 20px; height:430px">
                 <div style="position: relative">
                     <!-- 좋아요,즐찾버튼 시작 -->
                     <div class="d-flex" style="position: absolute; left: 350px; top: -35px">
@@ -68,6 +73,7 @@
                         </div>
                     </div>
                     <!-- 좋아요, 즐찾버튼 끝 -->
+
 
                     <div class="m_ph_sm m_txt_title m_font_xxl">{{partName}}</div>
                     <div class="m_ph_sm m_center_column">
@@ -89,6 +95,7 @@
                     <div class="m_ph_sm m_center_column">
                         <div class="m_txt_title m_font_xl">연관키워드</div>
                         <div class="m_pl_sm m_font_md">{{keyword}}</div>
+
                     </div>
                     {{#option}}
                     <div class="m_ph_sm d-flex col-lg-7" style="overflow-x:100%; ">
@@ -164,7 +171,9 @@
                     <div class="m_pl_md m_txt_title m_font_xl">소개</div>
                 </div>
                 <hr />
+
                 <div class="m_font_md">{{content}}</div>
+
             </div>
             <div class="m_pt_lg">
                 <!-- 여기서부터 같은 박스 7개-->
@@ -174,7 +183,9 @@
                     <div class="m_pl_md m_txt_title m_font_xl ">주요시설</div>
                 </div>
                 <hr />
+
                 <div class="m_font_md">{{mainFacility}}</div>
+
             </div>
             <div class="m_pt_lg">
                 <!-- 여기서부터 같은 박스 7개-->
@@ -196,7 +207,9 @@
                     <div class="m_pl_md m_txt_title m_font_xl">애견 정책 및 주의사항</div>
                 </div>
                 <hr />
+
                 <div class="m_font_md">{{policyCautions}}</div>
+
             </div>
             <div class="m_pt_lg">
                 <!-- 여기서부터 같은 박스 7개-->
@@ -220,9 +233,12 @@
         let status = $("#btn-like")[0].innerText;
         console.log(status);
         if (status == "favorite_border") {
+            console.log($("#btn-like"));
             $("#btn-like")[0].innerText = 'favorite';
+            $("#btn-like").addClass("text-danger");
         } else {
             $("#btn-like")[0].innerText = 'favorite_border';
+            $("#btn-like").removeClass("text-danger");
         }
     });
     // 즐겨찾기 버튼 활성화, 비활성화
@@ -231,8 +247,10 @@
         console.log(status);
         if (status == "star_border") {
             $("#btn-favorite")[0].innerText = 'star';
+            $("#btn-favorite").addClass("text-warning");
         } else {
             $("#btn-favorite")[0].innerText = 'star_border';
+            $("#btn-favorite").removeClass("text-warning");
         }
     });
 

@@ -44,17 +44,17 @@ public class AdminController {
 
 
     @GetMapping("/s/admin/main")
-    public String adminMain(){
+    public String adminMain() {
         return "pages/admin/adminMain";
     }
 
     @GetMapping("/s/admin/comment-manage")
-    public String adminComment(){
+    public String adminComment() {
         return "pages/admin/commentManage";
     }
 
     @GetMapping("/s/admin/jarang-manage")
-    public String adminJarang(){
+    public String adminJarang() {
         return "pages/admin/jarangManage";
     }
 
@@ -76,6 +76,7 @@ public class AdminController {
     
     //중복
     @PutMapping("/s/admin/notice-update")
+
     public String adminNoticeUpdate( ) {
         return "";
     }
@@ -85,6 +86,7 @@ public class AdminController {
     public String adminNoticeDelete() {
         return "";
  }
+
 
     //중복
     @GetMapping("/s/admin/jarang-delete")
