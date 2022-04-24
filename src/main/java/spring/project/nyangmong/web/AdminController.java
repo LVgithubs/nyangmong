@@ -3,23 +3,37 @@ package spring.project.nyangmong.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
+import spring.project.nyangmong.domain.boards.Boards;
+import spring.project.nyangmong.domain.comment.Comment;
+import spring.project.nyangmong.domain.user.User;
 import spring.project.nyangmong.handle.ex.CustomException;
 import spring.project.nyangmong.service.AdminService;
+import spring.project.nyangmong.service.BoardsService;
 import spring.project.nyangmong.service.CommentService;
 import spring.project.nyangmong.web.dto.members.admin.AdminUserDto;
+import spring.project.nyangmong.web.dto.members.comment.CommentResponseDto;
 
 @RequiredArgsConstructor
 @Controller
 public class AdminController {
 
     private CommentService commentService;
+    private final BoardsService boardsService;
+        private final HttpSession session;
+
     
 
     private final AdminService adminService;
@@ -57,15 +71,48 @@ public class AdminController {
     public String adminJarang() {
         return "pages/admin/jarangManage";
     }
-
-    @GetMapping("/s/admin/notice-manage")
-    public String adminNotice() {
-        return "pages/admin/noticeManage";
+    
+   @GetMapping("/s/admin/notice-manage")
+    public String adminNotice(@RequestParam(defaultValue = "0") Integer page, Model model) {
+        PageRequest pq = PageRequest.of(page, 10);
+        Page<Boards> boards = boardsService.게시글목록(page);
+        // 응답의 DTO를 만들어서 <- posts 를 옮김. (라이브러리 있음)
+        model.addAttribute("notice", boards);
+        return "/pages/admin/noticeManage";
     }
 
     @GetMapping("/s/admin/write-form")
     public String adminNoticeWriteForm() {
         return "pages/post/noticeWriteForm";
+    }
+
+     @GetMapping("/s/admin/notice/{id}")
+    public String adminNoticeDetail(@PathVariable Integer id, Model model) {
+        Boards boardsEntity = boardsService.글상세보기(id);
+        User principal = (User) session.getAttribute("principal");
+
+        List<CommentResponseDto> comments = new ArrayList<>();
+
+        for (Comment comment : boardsEntity.getComments()) {
+            CommentResponseDto dto = new CommentResponseDto();
+            dto.setComment(comment);
+
+            if (principal != null) {
+                if (principal.getId() == comment.getId()) {
+                    dto.setAuth(true); // or false
+                } else {
+                    dto.setAuth(false); // or false
+                }
+            } else {
+                dto.setAuth(false); // or false
+            }
+
+            comments.add(dto);
+        }
+
+        model.addAttribute("comments", comments);
+        model.addAttribute("boardsId", id);
+        return "pages/post/noticeDetail";
     }
 
     //notice-write는 게시판 합쳐지면 있을 것 같음 일단 보류... 

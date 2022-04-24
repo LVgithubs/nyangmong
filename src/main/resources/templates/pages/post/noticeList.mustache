@@ -16,42 +16,23 @@
         <th class="col-1">상세보기</th>
       </tr>
     </thead>
+    {{#board}}
     <tbody>
       <tr>
-        <th scope="row">id</th>
-        <td> Title</td>
-        <td>username</td>
-        <td>createdate</td>
+        <td><input id="chk" type="checkbox" name="id" value="1" /></td>
+        <th scope="row">{{id}}</th>
+        <td> {{title}} </td>
+        <td> {{user.userName}} </td>
+        <td>{{createDate}}</td>
         <td>
-          <a href="/noticeDetail">더보기
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">id</th>
-        <td> Title</td>
-        <td>username</td>
-        <td>createdate</td>
-        <td>
-          <a href="/noticeDetail">더보기
+          <a href="/#">더보기
           </a>
         </td>
       </tr>
 
     </tbody>
+    {{/board}}
   </table>
-  <!-- <nav>
-  <ul class="pagination" style="justify-content: center;">
-    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav> -->
-
 
   <div class="paging-div">
     <ul class="pagination">
@@ -64,6 +45,5 @@
   </div>
 
 </div>
-
 
 {{> /layout/footer}}
