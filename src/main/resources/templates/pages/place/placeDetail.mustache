@@ -11,6 +11,7 @@
 
             <!-- 메뉴 박스 시작 -->
             <div id="box-관광지" class="m_box_menu_detail m_bg_secondary">
+
                 <a id="spot" href="javascript:linkListGo('관광지')" class="m_txt_title">관광지</a>
             </div>
             <div id="box-숙박" class=" m_box_menu_detail m_bg_secondary">
@@ -24,6 +25,7 @@
             </div>
             <div id="box-동물병원" class="m_box_menu_detail m_bg_secondary ">
                 <a id="hospital " href="javascript:linkListGo( '동물병원') " class="m_txt_title ">동물병원</a>
+
             </div>
 
             <!-- 메뉴 박스  끝-->
@@ -31,8 +33,10 @@
 
     </div>
     {{#places}}
+
     <input id="latitude" type="hidden" value="{{latitude}}" />
     <input id="longitude" type="hidden" value="{{longitude}}" />
+
     <h2 id="title" class="text-center m_txt_title ">{{partName}}</h2>
     <hr>
     <div class="mx-auto m_mh_md ">
@@ -43,8 +47,10 @@
                     <!-- The slideshow/carousel -->
                     <div class="carousel-inner">
                         {{#imageList}}
+
                         <div class="carousel-item m_mt_lg " data-bs-interval="3000">
                             <img src="{{imgurl}} " alt="# " class="m_box_img_slide " style="object-fit:cover; height:90%; ">
+
                         </div>
                         {{/imageList}}
                         <div class="carousel-item active " data-bs-interval="100">
@@ -57,6 +63,7 @@
             <div class="m_bg_primary col-lg-5 d-flex " style=" border-radius: 25px; padding: 20px; height:500px ">
                 <div style="position: relative ">
                     <!-- 좋아요,즐찾버튼 시작 -->
+
                     <div class="d-flex " style="position: absolute; left: 350px; top: -35px ">
                         <div class="d-flex bg-light " style="width: 40px; height:40px; justify-content: center; align-items: center; border-radius: 25px; box-shadow: 0px 0px 3px 0px rgb(110, 105, 105) inset ">
                             <i id="btn-like" class="material-icons ">favorite_border</i>
@@ -66,9 +73,11 @@
                         </div>
                         <div class="d-flex bg-light m_ml_sm " style="width: 40px; height:40px; justify-content: center; align-items: center; border-radius: 25px; box-shadow: 0px 0px 3px 0px rgb(110, 105, 105) inset ">
                             <i id="btn-setting" class="fa-solid fa-gear "></i>
+
                         </div>
                     </div>
                     <!-- 좋아요, 즐찾버튼 끝 -->
+
 
                     <div class="m_ph_sm m_txt_title m_font_xxl ">{{title}}</div>
                     <div class="m_ph_sm m_center_column ">
@@ -133,6 +142,7 @@
                         <div class="d-flex bg-light m_ml_sm " style="flex-direction:column; border-radius: 10px; width:100px; height:100px; justify-content: center; align-items: center; padding:10px ">
                             <img src="/images/petrestaurant.png " style="width: 80px; height: 80px; ">
                             <div id="petFlag " style="font-size: small; ">펫 식당</div>
+
                         </div>
                         {{/petFlagShow}}
                     </div>
@@ -150,7 +160,9 @@
                     <div class="m_pl_md m_txt_title m_font_xl ">소개</div>
                 </div>
                 <hr />
-                <div class="m_font_md ">{{content}}</div>
+
+                <div class="m_font_md">{{content}}</div>
+
             </div>
             <div class="m_pt_lg ">
                 <!-- 여기서부터 같은 박스 7개-->
@@ -160,9 +172,13 @@
                     <div class="m_pl_md m_txt_title m_font_xl ">주요시설</div>
                 </div>
                 <hr />
-                <div class="m_font_md ">{{mainFacility}}</div>
+
+                <div class="m_font_md">{{mainFacility}}</div>
+
             </div>
+
             <div class="m_pt_lg ">
+
                 <!-- 여기서부터 같은 박스 7개-->
                 <div class="d-flex ">
                     <div>
@@ -173,7 +189,9 @@
                 <hr />
                 <div class="m_font_md ">{{usedCost}}</div>
             </div>
+
             <div class="m_pt_lg ">
+
                 <!-- 여기서부터 같은 박스 7개-->
                 <div class="d-flex ">
                     <div>
@@ -182,14 +200,18 @@
                     <div class="m_pl_md m_txt_title m_font_xl ">애견 정책 및 주의사항</div>
                 </div>
                 <hr />
-                <div class="m_font_md ">{{policyCautions}}</div>
+
+                <div class="m_font_md">{{policyCautions}}</div>
+
             </div>
             <div class="m_pt_lg ">
                 <!-- 여기서부터 같은 박스 7개-->
                 <div class="d-flex ">
                     <div> <img src="/images/pet.png " style="width: 25px; height: 25px; " alt=" ">
                     </div>
+
                     <div class="m_pl_md m_txt_title m_font_xl ">지도</div>
+
                 </div>
                 <hr />
                 <div id="map" style="width:100%;height:300px; "></div>
@@ -227,8 +249,10 @@
         }
     });
 
+
     let latitude = $("#latitude").val();
     let longitude = $("#longitude").val();
+
 
     //지도 옵션
     var mapOptions = {
@@ -256,12 +280,21 @@
     var marker = new naver.maps.Marker(markerOptions);
 
     // 카테고리 색 변화
+
+    let changeSecondary = (category) => {
+        if ($(`#box-${category}`).hasClass("m_bg_primary") == true) {
+            $(`#box-${category}`).removeClass("m_bg_primary");
+            $(`#box-${category}`).addClass("m_bg_secondary");
+        };
+    }
+
     let changePrimary = (category) => {
         $(`#box-${category}`).removeClass("m_bg_secondary");
         $(`#box-${category}`).addClass("m_bg_primary");
     }
 
     let changeColorBox = () => {
+
         let category = $("#title").html();
         console.log(category);
         changePrimary(category);
@@ -269,3 +302,4 @@
     changeColorBox();
 </script>
 {{/places}} {{>layout/footer}}
+

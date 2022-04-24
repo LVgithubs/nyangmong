@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import spring.project.nyangmong.domain.places.PlaceRepository;
@@ -91,11 +92,6 @@ public class PageController {
         return "pages/post/jarangWriteForm";
     }
 
-    @GetMapping("/noticeList")
-    public String main6() {
-        return "pages/post/noticeList";
-    }
-
     @GetMapping("/noticeWriteForm")
     public String noticeWriteForm() {
         return "pages/post/noticeWriteForm";
@@ -151,9 +147,18 @@ public class PageController {
         return "pages/post/noticeDetail";
     }
 
+    @GetMapping("/noticeList")
+    public String noticeList() {
+        return "pages/post/noticeList";
+    }
+
     @GetMapping("/noticeUpdateForm")
     public String noticeUpdateForm() {
         return "pages/post/noticeUpdateForm";
     }
 
+    @GetMapping("/bbq")
+    public @ResponseBody String bhc() {
+        return "";
+    }
 }
