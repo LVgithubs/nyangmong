@@ -52,7 +52,7 @@ public class BoardsController {
 
             comments.add(dto);
         }
-
+        model.addAttribute("boards", boardsEntity);
         model.addAttribute("comments", comments);
         model.addAttribute("boardsId", id);
         return "pages/post/jarangDetail";
@@ -71,7 +71,7 @@ public class BoardsController {
         PageRequest pq = PageRequest.of(page, 10);
         Page<Boards> boards = boardsService.게시글목록(page);
         // 응답의 DTO를 만들어서 <- posts 를 옮김. (라이브러리 있음)
-        model.addAttribute("board", boards);
+        model.addAttribute("boards", boards);
         return "/pages/post/jarangList";
     }
 

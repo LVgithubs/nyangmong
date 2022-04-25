@@ -23,7 +23,7 @@ async function write() {
 
     if (responseParse.code == 1) {
         alert("게시글 등록 성공");
-        location.href = "/";
+        location.href = "/boards";
     } else {
         alert("게시글 등록 실패");
     }
